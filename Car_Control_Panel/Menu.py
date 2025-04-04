@@ -40,11 +40,39 @@ MaxSpeed:{self.maxspd}
 ON......:{'yes' if self.on == True else 'not'}              
               ''')
         
+def menu():
+    os.system('cls' or None) #cls to clear the terminal and 'Or None' for not windows system
+    print('''1 - New Car
+2 - Car informations
+3 - Delete car
+4 - Turn on car
+5 - Turn of car
+6 - Car list
+7 - Exit
+''')
+    opt = input('Type a option: ')
+    return opt
+
+def newC():
+    os.system('cls' or None)
+    n = input('car name')
+    p = input('car power')
+    newcar = car(n, p)
+    cars.append(newcar)        
+    print('New car created')
+    os.system('pause' or None)
+
+def carinfo():
+    os.system('cls' or None)
+    
+
+
+
+
+
+'''#test for all the functions
 pablo = car('pablo',10)
 
-
-
-#test for all the functions
 print('-------TEST-1-------')
 pablo.Info()
 
@@ -56,4 +84,4 @@ pablo.Info()
 print('-------TEST-3-------')
 pablo.Turnoff()
 pablo.Turnoff()
-pablo.Info()
+pablo.Info()'''
