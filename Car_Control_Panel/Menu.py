@@ -2,7 +2,7 @@
 import os
 
 #create a list of cars to add the cars of the system
-cars = ['camaro','honda']
+cars = []
 
 #def the car class to create all cars in the system with this main Class
 class car:
@@ -46,19 +46,19 @@ def menu():
 2 - Car informations
 3 - Delete car
 4 - Turn on car
-5 - Turn of car
+5 - Turn off car
 6 - Car list
 7 - Exit
 ''')
     opt = input('Type a option: ')
-    return int(opt)
+    return opt
 
 
 #funcions 1 New Car
 def newC():
     os.system('cls' or None)
-    n = input('car name')
-    p = input('car power')
+    n = input('car name: ')
+    p = input('car power: ')
     newcar = car(n, p)
     cars.append(newcar)        
     print('New car created')
@@ -67,54 +67,84 @@ def newC():
 #Funcition 2 Car information
 def carinfo():
     os.system('cls' or None)
-    n = input('Car number: ')
+    n = input('Car number to show info: ')
     try:
         cars[int(n)].Info()
     except:
-        print('Unknow car')
+        print('unknown car')
     os.system('pause' or None)
 
 #Function 3 delete a car
 def deletecar():
     os.system('cls' or None)
-    n = input('Car number: ')
+    n = input('Car number to delete: ')
     try:
         del cars[int(n)]
     except:
-        print('Unknow car')
+        print('unknown car')
     os.system('pause' or None)
 
 
 #function 4 Turn on car
 def caron():
     os.system('cls' or None)
-    n = input('car number: ')
+    n = input('car number to turn on: ')
     try:
-        cars[n].Turnoon()
+        cars[int(n)].Turnon()
     except:
-        print('Unknow car')
+        print('unknown car')
+    os.system('pause' or None)
 
 #function 5 Turn off car
 def caroff():
     os.system('cls' or None)
-    n = input('car number: ')
+    n = input('car number to turn off: ')
     try:
-        cars[n].Turnoff()
+        cars[int(n)].Turnoff()
     except:
-        print('Unknow car')
+        print('unknown car')
+    os.system('pause' or None)
 
 
 #function 6 Car list
 def list():
-    carnum = 1
+    os.system('cls' or None)
+    carnum = 0
     for i in cars:
-        print(f'{str(carnum)} - {i}')
+        print(f'{str(carnum)} - {i.name}')
         carnum += 1
+    os.system('pause' or None)
 
-opt = menu()
-match opt:
-    case 1:
-        newC()
+while True:
+    opt = menu()
+    match opt:
+        case '1':
+            newC()
+        
+        case '2':
+            carinfo()
+
+        case '3':
+            deletecar()
+
+        case '4':
+            caron()
+
+        case '5':
+            caroff()
+
+        case '6':
+            list()
+
+        case '7':
+            break
+
+        case _:
+            print('Unknown option, please try again!')
+            os.system('pause' or None)
+
+
+
 
 
 '''#test for all the functions
