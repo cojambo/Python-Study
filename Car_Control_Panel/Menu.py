@@ -2,7 +2,7 @@
 import os
 
 #create a list of cars to add the cars of the system
-cars = []
+cars = ['camaro','honda']
 
 #def the car class to create all cars in the system with this main Class
 class car:
@@ -51,8 +51,10 @@ def menu():
 7 - Exit
 ''')
     opt = input('Type a option: ')
-    return opt
+    return int(opt)
 
+
+#funcions 1 New Car
 def newC():
     os.system('cls' or None)
     n = input('car name')
@@ -62,12 +64,57 @@ def newC():
     print('New car created')
     os.system('pause' or None)
 
+#Funcition 2 Car information
 def carinfo():
     os.system('cls' or None)
-    
+    n = input('Car number: ')
+    try:
+        cars[int(n)].Info()
+    except:
+        print('Unknow car')
+    os.system('pause' or None)
+
+#Function 3 delete a car
+def deletecar():
+    os.system('cls' or None)
+    n = input('Car number: ')
+    try:
+        del cars[int(n)]
+    except:
+        print('Unknow car')
+    os.system('pause' or None)
 
 
+#function 4 Turn on car
+def caron():
+    os.system('cls' or None)
+    n = input('car number: ')
+    try:
+        cars[n].Turnoon()
+    except:
+        print('Unknow car')
 
+#function 5 Turn off car
+def caroff():
+    os.system('cls' or None)
+    n = input('car number: ')
+    try:
+        cars[n].Turnoff()
+    except:
+        print('Unknow car')
+
+
+#function 6 Car list
+def list():
+    carnum = 1
+    for i in cars:
+        print(f'{str(carnum)} - {i}')
+        carnum += 1
+
+opt = menu()
+match opt:
+    case 1:
+        newC()
 
 
 '''#test for all the functions
