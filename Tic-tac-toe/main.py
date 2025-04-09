@@ -9,9 +9,9 @@ maxplays = 9
 win = 'n'
 whoplay = 2 # 1 == CPU, 2 == PLAYER
 board = [
-    [' ',' ',' '],
-    [' ',' ',' '],
-    [' ',' ',' ']
+    [' ',' ','X'],
+    [' ','X',' '],
+    ['X',' ',' ']
 ]
 
 def screen():
@@ -80,6 +80,8 @@ def wincheck():
         if win != 'n':
             break
         #Columns check
+        win = 'n'
+        l=c=0
         while c < 3:
             plus = 0
             l = 0
@@ -92,8 +94,42 @@ def wincheck():
                 win = s
                 break
         if win != 'n':
-            print(f'vencedor {s}')
             break
+        
+        #DIAGONAL CHECK
+        plus = 0
+        d1 = 0
+        l=c= 0
+        while d1 < 3:
+            if board[l][c]==s:
+                plus += 1
+            l += 1
+            c += 1
+            d1 +=1
+            if plus ==3:
+                win = s
+                break
+        if win != 'n':
+            break         
+        
+        plus = 0
+        d2 = 0
+        l = 0
+        c = 2
+        while d2 < 3:
+            if board[l][c]==s:
+                plus += 1
+            l += 1
+            c -= 1
+            d2 +=1
+            if plus ==3:
+                win = s
+                break
+        if win != 'n':
+            break        
+
+
+
 
 
 
