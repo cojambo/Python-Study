@@ -1,6 +1,6 @@
 import os
 import random
-from colorama import Style, Fore, Back
+from colorama import Fore
 
 #Variables for use in the game
 playagain = 'y'
@@ -9,10 +9,12 @@ maxplays = 9
 win = 'n'
 whoplay = 2 # 1 == CPU, 2 == PLAYER
 board = [
-    [' ',' ','X'],
-    [' ','X',' '],
-    ['X',' ',' ']
+    [' ',' ',' '],
+    [' ',' ',' '],
+    [' ',' ',' ']
 ]
+playewins = 0
+CPUwins = 0
 
 def screen():
     os.system('cls')
@@ -23,7 +25,10 @@ def screen():
 1:  {board[1][0]} | {board[1][1]} |  {board[1][2]}
    -----------
 2:  {board[2][0]} | {board[2][1]} |  {board[2][2]}
-plays: {Fore.GREEN + str(plays) + Fore.RESET}\n''')
+plays: {Fore.GREEN + str(plays) + Fore.RESET}
+Player wins: {Fore.CYAN + str(playewins) + Fore.RESET}  
+CPU wins: {Fore.LIGHTMAGENTA_EX + str(CPUwins) + Fore.RESET}
+''')
 
 def player():
     global plays
@@ -127,16 +132,50 @@ def wincheck():
                 break
         if win != 'n':
             break        
+    return win
 
-
+def reset():
+    global playagain
+    global plays
+    global maxplays
+    global win
+    global whoplay
+    global board
+    plays = 0
+    maxplays = 9
+    win = 'n'
+    whoplay = 2 # 1 == CPU, 2 == PLAYER
+    board = [
+        [' ',' ',' '],
+        [' ',' ',' '],
+        [' ',' ',' ']
+    ]
 
 
 
 
 wincheck()
 
-'''while True:
+while True:
     screen()
     player()
     cpu()
-'''
+    winc = wincheck()
+    match winc:
+        case 'X':
+            playewins += 1
+        case 'O':
+            CPUwins += 1
+    screen()
+    if winc != 'n' or maxplays <= plays:
+        print(f'{winc} win the game!')
+        playagain = input('Play again? (y/n)')
+        reset()
+        if playagain == 'n':
+            if playewins > CPUwins:
+                print(Fore.CYAN + 'Player is the winner!' + Fore.RESET)
+            elif CPUwins > playewins:
+                print(Fore.LIGHTMAGENTA_EX + 'CPU is the winner!' + Fore.RESET)
+            else:
+                print(Fore.LIGHTRED_EX + 'Game tied' + Fore.RESET)
+            break
