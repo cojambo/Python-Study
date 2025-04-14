@@ -151,9 +151,6 @@ def reset():
         [' ',' ',' ']
     ]
 
-
-
-
 wincheck()
 
 while True:
