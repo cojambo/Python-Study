@@ -1,4 +1,5 @@
 import sqlite3
+from sqlite3 import Error
 
 #create connection
 def dbconection():
@@ -6,7 +7,7 @@ def dbconection():
     con = None
     try:
         con = sqlite3.connect(path)
-    except OSError as er:
+    except Error as er:
         print(er)
     return con
 
@@ -27,7 +28,8 @@ def createtb(conection, sql):
         c.execute(sql)
         print('Tabela criada')
 
-    except OSError as ex:
+    except Error as ex:
         print(ex)
+
 
 createtb(vcon, vsql)
